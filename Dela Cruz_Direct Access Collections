@@ -2,10 +2,18 @@ using System;
 
 public struct Product
 {
-    public int Id;
+    public int IdNumber;
     public string Name;
     public int Quantity;
     public int Price;
+
+    public Product(int idNumber, string name, int quantity, int price)
+    {
+        IdNumber = idNumber;
+        Name = name;
+        Quantity = quantity;
+        Price = price;
+    }
 }
 
 public class Store
@@ -18,7 +26,7 @@ public class Store
         Product product = new Product();
 
         Console.Write("Enter ID: ");
-        product.Id = int.Parse(Console.ReadLine());
+        product.IdNumber = int.Parse(Console.ReadLine());
 
         Console.Write("Enter Name: ");
         product.Name = Console.ReadLine();
@@ -37,7 +45,7 @@ public class Store
     {
         for (int i = 0; i < productCount; i++)
         {
-            Console.WriteLine("ID: " + products[i].Id);
+            Console.WriteLine("ID: " + products[i].IdNumber);
             Console.WriteLine("Name: " + products[i].Name);
             Console.WriteLine("Quantity: " + products[i].Quantity);
             Console.WriteLine("Price: " + products[i].Price);
@@ -48,9 +56,9 @@ public class Store
     {
         for (int i = 0; i < productCount; i++)
         {
-            if (products[i].Id == id)
+            if (products[i].IdNumber == id)
             {
-                Console.WriteLine("ID: " + products[i].Id);
+                Console.WriteLine("ID: " + products[i].IdNumber);
                 Console.WriteLine("Name: " + products[i].Name);
                 Console.WriteLine("Quantity: " + products[i].Quantity);
                 Console.WriteLine("Price: " + products[i].Price);
@@ -62,7 +70,7 @@ public class Store
     {
         for (int i = 0; i < productCount; i++)
         {
-            if (products[i].Id == id)
+            if (products[i].IdNumber == id)
             {
                 Console.Write("Enter new Name: ");
                 products[i].Name = Console.ReadLine();
@@ -80,7 +88,7 @@ public class Store
     {
         for (int i = 0; i < productCount; i++)
         {
-            if (products[i].Id == id)
+            if (products[i].IdNumber == id)
             {
                 for (int j = i; j < productCount - 1; j++)
                 {
