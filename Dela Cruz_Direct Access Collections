@@ -1,0 +1,120 @@
+using System;
+
+public struct Product
+{
+    public int Id;
+    public string Name;
+    public int Quantity;
+    public int Price;
+}
+
+public class Store
+{
+    static Product[] products = new Product[100];
+    static int productCount = 0;
+
+    public void AddProduct()
+    {
+        Product product = new Product();
+
+        Console.Write("Enter ID: ");
+        product.Id = int.Parse(Console.ReadLine());
+
+        Console.Write("Enter Name: ");
+        product.Name = Console.ReadLine();
+
+        Console.Write("Enter Quantity: ");
+        product.Quantity = int.Parse(Console.ReadLine());
+
+        Console.Write("Enter Price: ");
+        product.Price = int.Parse(Console.ReadLine());
+
+        products[productCount] = product;
+        productCount++;
+    }
+
+    public void DisplayProducts()
+    {
+        for (int i = 0; i < productCount; i++)
+        {
+            Console.WriteLine("ID: " + products[i].Id);
+            Console.WriteLine("Name: " + products[i].Name);
+            Console.WriteLine("Quantity: " + products[i].Quantity);
+            Console.WriteLine("Price: " + products[i].Price);
+        }
+    }
+
+    public void SearchProduct(int id)
+    {
+        for (int i = 0; i < productCount; i++)
+        {
+            if (products[i].Id == id)
+            {
+                Console.WriteLine("ID: " + products[i].Id);
+                Console.WriteLine("Name: " + products[i].Name);
+                Console.WriteLine("Quantity: " + products[i].Quantity);
+                Console.WriteLine("Price: " + products[i].Price);
+            }
+        }
+    }
+
+    public void EditProduct(int id)
+    {
+        for (int i = 0; i < productCount; i++)
+        {
+            if (products[i].Id == id)
+            {
+                Console.Write("Enter new Name: ");
+                products[i].Name = Console.ReadLine();
+
+                Console.Write("Enter new Quantity: ");
+                products[i].Quantity = int.Parse(Console.ReadLine());
+
+                Console.Write("Enter new Price: ");
+                products[i].Price = int.Parse(Console.ReadLine());
+            }
+        }
+    }
+
+    public void DeleteProduct(int id)
+    {
+        for (int i = 0; i < productCount; i++)
+        {
+            if (products[i].Id == id)
+            {
+                for (int j = i; j < productCount - 1; j++)
+                {
+                    products[j] = products[j + 1];
+                }
+
+                productCount--;
+                break;
+            }
+        }
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Store program = new Store();
+
+        program.AddProduct();
+        program.DisplayProducts();
+
+        Console.Write("Enter ID to search: ");
+        int searchId = int.Parse(Console.ReadLine());
+        program.SearchProduct(searchId);
+
+        Console.Write("Enter ID to edit: ");
+        int editId = int.Parse(Console.ReadLine());
+        program.EditProduct(editId);
+
+        Console.Write("Enter ID to delete: ");
+        int deleteId = int.Parse(Console.ReadLine());
+        program.DeleteProduct(deleteId);
+
+        program.DisplayProducts();
+    }
+}
